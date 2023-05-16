@@ -28,7 +28,7 @@ export const Cast = () => {
     getCredits();
   }, [movieId]);
 
-  console.log(cast);
+  // console.log(cast);
   // console.log(photo);
 
   return (
@@ -36,14 +36,23 @@ export const Cast = () => {
       <h3>{`CAST-COMPONENT ${movieId}`}</h3>
       <ul>
         {cast.map(item => {
-          console.log(cast);
+          // console.log(cast);
           return (
             <li key={item.id}>
-              <img
-                src={`https://image.tmdb.org/t/p/w500${item.profile_path}`}
-                alt=""
-                width="100"
-              ></img>
+              {item.profile_path !== null ? (
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${item.profile_path}`}
+                  alt=""
+                  width="100"
+                ></img>
+              ) : (
+                <img
+                  src={`https://placehold.co/500x750?text=No%20Image`}
+                  alt=""
+                  width="100"
+                ></img>
+              )}
+
               {item.name}
               <p>Character: {item.character}</p>
             </li>

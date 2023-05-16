@@ -26,7 +26,7 @@ export const MovieDetails = () => {
         setImage(responseDetails.poster_path);
         setGenres(responseDetails.genres);
 
-        console.log(responseDetails);
+        // console.log(responseDetails);
       } catch (error) {
       } finally {
       }
@@ -34,8 +34,7 @@ export const MovieDetails = () => {
 
     getMovies();
   }, []);
-  console.log(title);
-  console.log(genres);
+
   const gernesNames = genres.map(genre => genre.name).join(', ');
 
   return (

@@ -28,7 +28,22 @@ export const Home = () => {
         {movies.map(movie => {
           return (
             <li key={movie.id}>
-              <Link>{movie.title}</Link>
+              <Link to={`movies/${movie.id}`}>
+                {movie.profile_path !== null ? (
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                    alt=""
+                    width="200"
+                  ></img>
+                ) : (
+                  <img
+                    src={`https://placehold.co/500x750?text=No%20Image`}
+                    alt=""
+                    width="200"
+                  ></img>
+                )}
+                {movie.title}
+              </Link>
             </li>
           );
         })}
