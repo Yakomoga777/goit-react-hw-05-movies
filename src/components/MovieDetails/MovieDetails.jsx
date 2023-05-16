@@ -1,8 +1,8 @@
 import { Cast } from 'components/Cast/Cast';
 import { Movies } from 'components/Movies/Movies';
 import MoviePage from 'pages/MoviePage';
-import React, { useEffect, useState } from 'react';
-import { Link, Outlet, Route, useParams } from 'react-router-dom';
+import React, { useEffect, useRef, useState } from 'react';
+import { Link, Outlet, Route, useLocation, useParams } from 'react-router-dom';
 import { getMovieDetails } from 'servieses/api';
 
 export const MovieDetails = () => {
@@ -15,13 +15,19 @@ export const MovieDetails = () => {
   const [image, setImage] = useState('');
   const [genres, setGenres] = useState([]);
 
+  //Запам"ятовуємо локацію Хуком useLocation()
+  const location = useLocation();
+  const backLinkLocationRef = useRef(location.state?.from ?? '/movies');
+  console.log(location);
+  console.log(backLinkLocationRef);
+
   useEffect(() => {
     const getMovies = async () => {
       try {
         const responseDetails = await getMovieDetails(params.movieId);
         // setMovies(responseSearch.results);
         setTitle(responseDetails.title);
-        setPopularity(responseDetails.popularity);
+        setPopularity(responseDetails.vote_average);
         setOverview(responseDetails.overview);
         setImage(responseDetails.poster_path);
         setGenres(responseDetails.genres);
@@ -39,6 +45,9 @@ export const MovieDetails = () => {
 
   return (
     <>
+      <Link to={backLinkLocationRef.current}>
+        <button type="button">Назад</button>
+      </Link>
       {/* <MoviePage /> */}
       {/* <Movies /> */}
       {/* <h2>Component MOVIE-DETAILS {params.movieId}</h2> */}

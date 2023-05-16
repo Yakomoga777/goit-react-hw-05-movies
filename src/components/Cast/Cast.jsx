@@ -33,7 +33,6 @@ export const Cast = () => {
 
   return (
     <>
-      <h3>{`CAST-COMPONENT ${movieId}`}</h3>
       <ul>
         {cast.map(item => {
           // console.log(cast);

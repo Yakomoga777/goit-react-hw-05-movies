@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { searchMovies } from 'servieses/api';
 
 export const Movies = () => {
@@ -9,6 +9,10 @@ export const Movies = () => {
   const [page, setPage] = useState(1);
 
   const [searchParams, setSearchParams] = useSearchParams();
+
+  //Запам"ятовуємо локацію Хуком useLocation()
+  const location = useLocation();
+  console.log(location);
 
   // console.log(searchParams.get('movieId'));
 
@@ -58,7 +62,9 @@ export const Movies = () => {
         {movies.map(movie => {
           return (
             <li key={movie.id}>
-              <Link to={`${movie.id}`}>{movie.title}</Link>
+              <Link to={`${movie.id}`} state={{ from: location }}>
+                {movie.title}
+              </Link>
             </li>
           );
         })}

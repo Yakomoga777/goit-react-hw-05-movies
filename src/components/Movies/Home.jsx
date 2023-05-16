@@ -1,10 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { fetchFilms, getTrending } from 'servieses/api';
 
 export const Home = () => {
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
+
+  //Запам"ятовуємо локацію Хуком useLocation()
+  const location = useLocation();
+
+  console.log(location);
 
   useEffect(() => {
     const getMovies = async () => {
@@ -28,7 +33,7 @@ export const Home = () => {
         {movies.map(movie => {
           return (
             <li key={movie.id}>
-              <Link to={`movies/${movie.id}`}>
+              <Link to={`movies/${movie.id}`} state={{ from: location }}>
                 {movie.profile_path !== null ? (
                   <img
                     src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
