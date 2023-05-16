@@ -3,7 +3,7 @@ import MoviePage from 'pages/MoviePage';
 import { Routes, NavLink, Route } from 'react-router-dom';
 import { Cast } from './Cast/Cast';
 import { GlobalStyle } from './GlobalStyle/GlobalStyle';
-import { Home } from './Home/Home';
+import { Home } from './Movies/Home';
 import { Navigation } from './Navigation/Navigation';
 import { MovieDetails } from './MovieDetails/MovieDetails';
 import { Movies } from './Movies/Movies';
@@ -18,7 +18,9 @@ export const App = () => {
         <Route path={'/'} element={<Navigation />}>
           <Route index element={<HomePage />}></Route>
           <Route path={'movies'} element={<MoviePage />}></Route>
-          <Route path={'movies/:movieId'} element={<MovieDetails />}></Route>
+          <Route path={'movies/:movieId'} element={<MovieDetails />}>
+            <Route path={'cast'} element={<Cast />} />
+          </Route>
           <Route path={'*'} element={'Page NOT FOUND'}></Route>
         </Route>
       </Routes>
