@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getMovieCredits } from 'servieses/api';
+import { StyledInfo, StyledLi } from './Cast.styled';
 // import { getMovieCredits } from 'servieses/api';
 
-export const Cast = () => {
+const Cast = () => {
   //Використовуємо хук useParams для отримання ДИНАМІЧНОГО ідентифікатора
   const { movieId } = useParams();
   // console.log(params);
@@ -37,7 +38,7 @@ export const Cast = () => {
         {cast.map(item => {
           // console.log(cast);
           return (
-            <li key={item.id}>
+            <StyledLi key={item.id}>
               {item.profile_path !== null ? (
                 <img
                   src={`https://image.tmdb.org/t/p/w500${item.profile_path}`}
@@ -51,13 +52,16 @@ export const Cast = () => {
                   width="100"
                 ></img>
               )}
-
-              {item.name}
-              <p>Character: {item.character}</p>
-            </li>
+              <StyledInfo>
+                <p>{item.name}</p>
+                <p>Character: {item.character}</p>
+              </StyledInfo>
+            </StyledLi>
           );
         })}
       </ul>
     </>
   );
 };
+
+export default Cast;

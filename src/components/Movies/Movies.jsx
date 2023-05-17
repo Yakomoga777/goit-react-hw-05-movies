@@ -3,46 +3,34 @@ import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { searchMovies } from 'servieses/api';
 
 export const Movies = () => {
-  const [submit, setSubmit] = useState(false);
-  const [movies, setMovies] = useState([]);
-  const [query, setQuery] = useState('');
-  const [page, setPage] = useState(1);
-
   const [searchParams, setSearchParams] = useSearchParams();
+  const movieQuery = searchParams.get('query') ?? '';
+  const [movies, setMovies] = useState([]);
 
   //Запам"ятовуємо локацію Хуком useLocation()
   const location = useLocation();
-  console.log(location);
 
   // console.log(searchParams.get('movieId'));
 
   useEffect(() => {
-    if (submit) {
-      const getMovies = async () => {
-        try {
-          const responseSearch = await searchMovies(query);
-          setMovies(responseSearch.results);
+    const getMovies = async () => {
+      try {
+        const responseSearch = await searchMovies(movieQuery);
+        setMovies(responseSearch.results);
+      } catch (error) {
+      } finally {
+        // setSubmit(!submit);
+      }
+    };
 
-          console.log(responseSearch.results);
-        } catch (error) {
-        } finally {
-          setSubmit(!submit);
-        }
-      };
+    getMovies();
+  }, [movieQuery]);
 
-      getMovies();
-    }
-  }, [query, submit]);
-
-  const onInputChahge = evt => {
-    setQuery(evt.target.value);
-  };
-
+  //
   const onFormSubmit = evt => {
     evt.preventDefault();
-
-    setSearchParams({ movieId: query });
-    setSubmit(!submit);
+    const query = evt.target.query.value;
+    setSearchParams({ query });
   };
 
   return (
@@ -52,9 +40,10 @@ export const Movies = () => {
           type="text"
           autoComplete="off"
           autoFocus
+          name="query"
           placeholder="Search images and photos"
-          onChange={onInputChahge}
-          value={query}
+          // onChange={onInputChahge}
+          // value={query}
         />
         <button type="submit">Search</button>
       </form>

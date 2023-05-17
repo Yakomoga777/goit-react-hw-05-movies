@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { fetchFilms, getTrending } from 'servieses/api';
+import { getTrending } from 'servieses/api';
 
 export const Home = () => {
   const [movies, setMovies] = useState([]);
-  const [page, setPage] = useState(1);
+  // const [page, setPage] = useState(1);
 
   //Запам"ятовуємо локацію Хуком useLocation()
   const location = useLocation();
@@ -14,7 +14,7 @@ export const Home = () => {
   useEffect(() => {
     const getMovies = async () => {
       try {
-        const trendingMovies = await getTrending(page);
+        const trendingMovies = await getTrending();
         setMovies(trendingMovies.results);
 
         console.log(trendingMovies.results);
@@ -24,7 +24,7 @@ export const Home = () => {
     };
 
     getMovies();
-  }, [page]);
+  }, []);
 
   return (
     <>

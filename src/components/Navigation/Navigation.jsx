@@ -1,14 +1,22 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
+import { StyledNav } from './Navigation.styled';
 
-export const Navigation = () => {
+const Navigation = () => {
   return (
     <>
-      <nav>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="movies">Movies</NavLink>
-      </nav>
-      <Outlet />
+      <header>
+        <StyledNav>
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="movies">Movies</NavLink>
+        </StyledNav>
+      </header>
+      <main>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Outlet />
+        </Suspense>
+      </main>
     </>
   );
 };
+export default Navigation;

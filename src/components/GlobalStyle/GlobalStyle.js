@@ -27,6 +27,7 @@ h5,
 h6,
 p {
   margin: 0;
+  margin-top:10px;
 }
 ul,
 ol {
@@ -37,5 +38,8 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
+}
+li{
+  list-style:none;
 }
 `;

@@ -1,11 +1,9 @@
-import { Cast } from 'components/Cast/Cast';
-import { Movies } from 'components/Movies/Movies';
-import MoviePage from 'pages/MoviePage';
-import React, { useEffect, useRef, useState } from 'react';
-import { Link, Outlet, Route, useLocation, useParams } from 'react-router-dom';
+import React, { Suspense, useEffect, useRef, useState } from 'react';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { getMovieDetails } from 'servieses/api';
+import { StyledLinks } from './MovieDetails.styled';
 
-export const MovieDetails = () => {
+const MovieDetailsPage = () => {
   //Використовуємо хук useParams для отримання ДИНАМІЧНОГО ідентифікатора
   const params = useParams();
 
@@ -17,7 +15,7 @@ export const MovieDetails = () => {
 
   //Запам"ятовуємо локацію Хуком useLocation()
   const location = useLocation();
-  const backLinkLocationRef = useRef(location.state?.from ?? '/movies');
+  const backLinkLocationRef = useRef(location.state?.from ?? '/');
   console.log(location);
   console.log(backLinkLocationRef);
 
@@ -39,7 +37,7 @@ export const MovieDetails = () => {
     };
 
     getMovies();
-  }, []);
+  }, [params.movieId]);
 
   const gernesNames = genres.map(genre => genre.name).join(', ');
 
@@ -48,9 +46,6 @@ export const MovieDetails = () => {
       <Link to={backLinkLocationRef.current}>
         <button type="button">Назад</button>
       </Link>
-      {/* <MoviePage /> */}
-      {/* <Movies /> */}
-      {/* <h2>Component MOVIE-DETAILS {params.movieId}</h2> */}
       <h2>{title}</h2>
       <p>User Score: {popularity}</p>
       <img
@@ -63,9 +58,15 @@ export const MovieDetails = () => {
       <p>{overview}</p>
       <h4>Genres</h4>
       <p>{gernesNames}</p>
-
-      <Link to={'cast'}>CasT</Link>
-      <Outlet />
+      <StyledLinks>
+        <Link to={'cast'}>CasT</Link>
+        <Link to={'reviews'}>Reviews</Link>
+      </StyledLinks>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
     </>
   );
 };
+
+export default MovieDetailsPage;

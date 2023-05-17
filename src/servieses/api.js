@@ -11,9 +11,7 @@ export const fetchFilms = async () => {
   return response;
 };
 export const getTrending = async page => {
-  const response = await axios.get(
-    `trending/movie/day?api_key=${KEY}&page=${page}`
-  );
+  const response = await axios.get(`trending/movie/day?api_key=${KEY}&page=1`);
   return response.data;
 };
 
@@ -41,9 +39,9 @@ export const getMovieCredits = async movieId => {
   return response.data;
 };
 
-// export const getMovieReviews = async movieId => {
-//   const response = await axios.get(
-//     `movie/${movieId}/reviews?api_key=${KEY}&language=en-US&page=1`
-//   );
-//   return response.data;
-// };
+export const getMovieReviews = async movieId => {
+  const response = await axios.get(
+    `movie/${movieId}/reviews?api_key=${KEY}&language=en-US&page=1`
+  );
+  return response.data;
+};
