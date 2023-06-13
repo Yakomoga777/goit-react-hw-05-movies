@@ -1,7 +1,12 @@
 import React, { Suspense, useEffect, useRef, useState } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { getMovieDetails } from 'servieses/api';
-import { StyledDescription, StyledLinks } from './MovieDetails.styled';
+import {
+  StyledBackButton,
+  StyledDescription,
+  StyledLinks,
+  StyledMovieContainer,
+} from './MovieDetails.styled';
 
 const MovieDetailsPage = () => {
   //Використовуємо хук useParams для отримання ДИНАМІЧНОГО ідентифікатора
@@ -44,11 +49,11 @@ const MovieDetailsPage = () => {
   return (
     <>
       <Link to={backLinkLocationRef.current}>
-        <button type="button">Назад</button>
+        <StyledBackButton type="button">Назад</StyledBackButton>
       </Link>
       <h2>{title}</h2>
       <p>User Score: {popularity}</p>
-      <div>
+      <StyledMovieContainer>
         <img
           src={`https://image.tmdb.org/t/p/w500${image}`}
           alt=""
@@ -61,7 +66,7 @@ const MovieDetailsPage = () => {
           <h4>Genres</h4>
           <p>{gernesNames}</p>
         </StyledDescription>
-      </div>
+      </StyledMovieContainer>
 
       <StyledLinks>
         <Link to={'cast'}>CasT</Link>
