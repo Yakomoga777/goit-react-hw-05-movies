@@ -1,7 +1,7 @@
 import React, { Suspense, useEffect, useRef, useState } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { getMovieDetails } from 'servieses/api';
-import { StyledLinks } from './MovieDetails.styled';
+import { StyledDescription, StyledLinks } from './MovieDetails.styled';
 
 const MovieDetailsPage = () => {
   //Використовуємо хук useParams для отримання ДИНАМІЧНОГО ідентифікатора
@@ -48,16 +48,21 @@ const MovieDetailsPage = () => {
       </Link>
       <h2>{title}</h2>
       <p>User Score: {popularity}</p>
-      <img
-        src={`https://image.tmdb.org/t/p/w500${image}`}
-        alt=""
-        width="300"
-      ></img>
+      <div>
+        <img
+          src={`https://image.tmdb.org/t/p/w500${image}`}
+          alt=""
+          width="300"
+          height="400"
+        ></img>
+        <StyledDescription>
+          <h3>Overview</h3>
+          <p>{overview}</p>
+          <h4>Genres</h4>
+          <p>{gernesNames}</p>
+        </StyledDescription>
+      </div>
 
-      <h3>Overview</h3>
-      <p>{overview}</p>
-      <h4>Genres</h4>
-      <p>{gernesNames}</p>
       <StyledLinks>
         <Link to={'cast'}>CasT</Link>
         <Link to={'reviews'}>Reviews</Link>

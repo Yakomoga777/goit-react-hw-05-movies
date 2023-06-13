@@ -7,3 +7,6 @@ export const StyledLinks = styled.div`
 
   height: 50px;
 `;
+export const StyledDescription = styled.div`
+  padding: 0 10px 0 10px;
+`;
