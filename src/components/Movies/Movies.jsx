@@ -7,7 +7,7 @@ import {
 } from 'components/Home/Home.styled';
 import { StyledBackButton } from 'pages/MovieDetails.styled';
 import React, { useEffect, useState } from 'react';
-import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { searchMovies } from 'servieses/api';
 import {
   StyledContainer,
