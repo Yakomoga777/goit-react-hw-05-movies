@@ -1,6 +1,3 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import { getTrending } from 'servieses/api';
 import {
   StyledCard,
   StyledH2,
@@ -10,30 +7,7 @@ import {
   StyledTitle,
 } from './Home.styled';
 
-export const Home = () => {
-  const [movies, setMovies] = useState([]);
-  // const [page, setPage] = useState(1);
-
-  //Запам"ятовуємо локацію Хуком useLocation()
-  const location = useLocation();
-
-  console.log(location);
-
-  useEffect(() => {
-    const getMovies = async () => {
-      try {
-        const trendingMovies = await getTrending();
-        setMovies(trendingMovies.results);
-
-        console.log(trendingMovies.results);
-      } catch (error) {
-      } finally {
-      }
-    };
-
-    getMovies();
-  }, []);
-
+export const Home = ({ movies, location }) => {
   return (
     <>
       <StyledH2>Trending films</StyledH2>
@@ -69,18 +43,3 @@ export const Home = () => {
     </>
   );
 };
-
-// const trandingFilms = fetchFilms();
-// console.log(trandingFilms);
-// useEffect(() => {
-//   console.log('Did Mount');
-
-//   const getMovies = async () => {
-//     try {
-//       const response = await getTrending();
-//       console.log(response);
-//     } catch (error) {}
-
-//     getMovies();
-//   };
-// }, []);

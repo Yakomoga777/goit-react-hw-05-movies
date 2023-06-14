@@ -11,10 +11,6 @@ const Cast = () => {
 
   const [cast, setCast] = useState([]);
 
-  // const [overview, setOverview] = useState('');
-  // const [image, setImage] = useState('');
-  // const [genres, setGenres] = useState([]);
-
   useEffect(() => {
     const getCredits = async () => {
       try {
@@ -29,16 +25,12 @@ const Cast = () => {
     getCredits();
   }, [movieId]);
 
-  // console.log(cast);
-  // console.log(photo);
-
   return (
     <>
       <ul>
         {cast.map(item => {
-          // console.log(cast);
           return (
-            <StyledLi key={item.id}>
+            <StyledLi key={item.cast_id}>
               {item.profile_path !== null ? (
                 <img
                   src={`https://image.tmdb.org/t/p/w500${item.profile_path}`}

@@ -22,8 +22,6 @@ const MovieDetailsPage = () => {
   //Запам"ятовуємо локацію Хуком useLocation()
   const location = useLocation();
   const backLinkLocationRef = useRef(location.state?.from ?? '/');
-  console.log(location);
-  console.log(backLinkLocationRef);
 
   useEffect(() => {
     const getMovies = async () => {

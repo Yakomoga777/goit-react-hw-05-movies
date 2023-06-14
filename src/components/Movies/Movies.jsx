@@ -15,37 +15,7 @@ import {
   StyledSearchInput,
 } from './Movies.styled';
 
-export const Movies = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const movieQuery = searchParams.get('query') ?? '';
-  const [movies, setMovies] = useState([]);
-
-  //Запам"ятовуємо локацію Хуком useLocation()
-  const location = useLocation();
-
-  // console.log(searchParams.get('movieId'));
-
-  useEffect(() => {
-    const getMovies = async () => {
-      try {
-        const responseSearch = await searchMovies(movieQuery);
-        setMovies(responseSearch.results);
-      } catch (error) {
-      } finally {
-        // setSubmit(!submit);
-      }
-    };
-
-    getMovies();
-  }, [movieQuery]);
-
-  //
-  const onFormSubmit = evt => {
-    evt.preventDefault();
-    const query = evt.target.query.value;
-    setSearchParams({ query });
-  };
-
+export const Movies = ({ onFormSubmit, movies, location }) => {
   return (
     <StyledContainer>
       <StyledSearchForm onSubmit={onFormSubmit}>

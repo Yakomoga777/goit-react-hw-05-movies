@@ -4,19 +4,14 @@ import { getMovieReviews } from 'servieses/api';
 
 const Reviews = () => {
   const { movieId } = useParams();
-  // console.log(params);
 
   const [reviews, setReviews] = useState([]);
-
-  // const [overview, setOverview] = useState('');
-  // const [image, setImage] = useState('');
-  // const [genres, setGenres] = useState([]);
 
   useEffect(() => {
     const getCredits = async () => {
       try {
         const responseReviews = await getMovieReviews(movieId);
-        console.log(responseReviews.results);
+
         setReviews(responseReviews.results);
       } catch (error) {
       } finally {
@@ -27,16 +22,16 @@ const Reviews = () => {
   }, [movieId]);
 
   return (
-    <>
+    <ul>
       {reviews.map(item => {
         return (
-          <>
+          <li key={item.id}>
             <h3>Author: {item.author}</h3>
             <p>{item.content} </p>
-          </>
+          </li>
         );
       })}
-    </>
+    </ul>
   );
 };
 
