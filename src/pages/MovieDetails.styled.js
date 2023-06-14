@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const StyledLinks = styled.div`
@@ -6,6 +7,20 @@ export const StyledLinks = styled.div`
   align-items: center;
 
   height: 50px;
+`;
+
+export const StyledLink = styled(Link)`
+  color: black;
+  text-decoration: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  transition: background-color 0.3s ease;
+
+  &:hover,
+  &:focus {
+    background-color: #e2e2e2;
+  }
 `;
 export const StyledDescription = styled.div`
   padding: 0 10px 0 10px;

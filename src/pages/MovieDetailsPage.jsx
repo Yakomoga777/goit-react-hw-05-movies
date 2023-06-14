@@ -4,6 +4,7 @@ import { getMovieDetails } from 'servieses/api';
 import {
   StyledBackButton,
   StyledDescription,
+  StyledLink,
   StyledLinks,
   StyledMovieContainer,
 } from './MovieDetails.styled';
@@ -69,8 +70,8 @@ const MovieDetailsPage = () => {
       </StyledMovieContainer>
 
       <StyledLinks>
-        <Link to={'cast'}>CasT</Link>
-        <Link to={'reviews'}>Reviews</Link>
+        <StyledLink to={'cast'}>CasT</StyledLink>
+        <StyledLink to={'reviews'}>Reviews</StyledLink>
       </StyledLinks>
       <Suspense fallback={<div>Loading...</div>}>
         <Outlet />

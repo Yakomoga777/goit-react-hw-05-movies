@@ -5,10 +5,6 @@ export const StyledList = styled.ul`
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
-
-  width: 830px;
-  margin-left: auto;
-  margin-right: auto;
 `;
 
 export const StyledCard = styled.div`

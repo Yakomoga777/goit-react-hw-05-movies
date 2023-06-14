@@ -11,3 +11,9 @@ export const StyledSearchInput = styled.input`
 
   border-radius: 5px;
 `;
+
+export const StyledContainer = styled.div`
+  width: 830px;
+  margin-left: auto;
+  margin-right: auto;
+`;

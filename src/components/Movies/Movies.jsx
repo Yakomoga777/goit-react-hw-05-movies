@@ -9,7 +9,11 @@ import { StyledBackButton } from 'pages/MovieDetails.styled';
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { searchMovies } from 'servieses/api';
-import { StyledSearchForm, StyledSearchInput } from './Movies.styled';
+import {
+  StyledContainer,
+  StyledSearchForm,
+  StyledSearchInput,
+} from './Movies.styled';
 
 export const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -43,7 +47,7 @@ export const Movies = () => {
   };
 
   return (
-    <>
+    <StyledContainer>
       <StyledSearchForm onSubmit={onFormSubmit}>
         <StyledSearchInput
           type="text"
@@ -82,6 +86,6 @@ export const Movies = () => {
           );
         })}
       </StyledList>
-    </>
+    </StyledContainer>
   );
 };
