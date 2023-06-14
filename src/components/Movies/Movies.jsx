@@ -6,9 +6,8 @@ import {
   StyledTitle,
 } from 'components/Home/Home.styled';
 import { StyledBackButton } from 'pages/MovieDetails.styled';
-import React, { useEffect, useState } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
-import { searchMovies } from 'servieses/api';
+import React from 'react';
+
 import {
   StyledContainer,
   StyledSearchForm,
